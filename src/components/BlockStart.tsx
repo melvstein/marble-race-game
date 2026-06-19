@@ -1,5 +1,7 @@
+"use client";
+
 import BlockProps from "@/types/BlockProps";
-import { Box, Sphere } from "@react-three/drei";
+import { Box, Float, Text } from "@react-three/drei";
 
 export default function BlockStart({ position = [0, 0, 0] } : BlockProps) {
   return (
@@ -7,10 +9,19 @@ export default function BlockStart({ position = [0, 0, 0] } : BlockProps) {
       <group
         position={position}
       >
-        <Sphere>
-          <meshStandardMaterial color="royalblue" />
-        </Sphere>
-        
+        <Float
+          floatIntensity={0.25}
+          rotationIntensity={0.25}
+        >
+          <Text
+            scale={0.5}
+            position={[0, 1, 0]}
+            rotation-x={-0.25}
+          >
+            Marble Race
+            <meshStandardMaterial color="black" />
+          </Text>
+        </Float>
         <Box
           receiveShadow
           scale={[4, 0.2, 4]}

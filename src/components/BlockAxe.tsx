@@ -1,3 +1,5 @@
+"use client";
+
 import BlockProps from "@/types/BlockProps";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { useRef, useState } from "react";
@@ -6,13 +8,13 @@ import { Box } from "@react-three/drei/core/shapes";
 
 
 export default function BlockAxe({ position = [0, 0, 0] } : BlockProps) {
-  const obstacleRef = useRef<RapierRigidBody>(null!);
+  const obstacleRef = useRef<RapierRigidBody | null>(null);
   const [ timeOffset ] = useState(() => Math.random() * Math.PI * 2); // Random time offset between 0 and 2π
 
   useFrame((state, delta) => {
     const time = state.clock.getElapsedTime();
     const x = Math.sin(time + timeOffset) * 1.25;
-    obstacleRef.current.setNextKinematicTranslation({x: position[0] + x, y: position[1] + 0.75, z: position[2]});
+    obstacleRef.current?.setNextKinematicTranslation({x: position[0] + x, y: position[1] + 0.75, z: position[2]});
   });
 
   return (

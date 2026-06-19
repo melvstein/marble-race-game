@@ -1,13 +1,16 @@
+"use client";
+
 import { useHelper } from "@react-three/drei";
 import { useRef } from "react";
 import * as THREE from "three";
 import { useControls } from "leva";
+import { useFrame } from "@react-three/fiber";
 
 export default function Lights() {
   const directionalLightRef = useRef<THREE.DirectionalLight>(null!);
 
   const directionalLightSettings = useControls("Directional Light", {
-    showHelper: true,
+    showHelper: false,
     position: {
       value: [2, 4, 3],
       step: 0.1,
@@ -18,6 +21,12 @@ export default function Lights() {
     directionalLightSettings.showHelper ? directionalLightRef : null,
     THREE.DirectionalLightHelper, 0.5, "blue"
   );
+
+  useFrame((state) => {
+    directionalLightRef.current.position.z = state.camera.position.z + 1 - 4;
+    directionalLightRef.current.target.position.z = state.camera.position.z - 4;
+    directionalLightRef.current.target.updateMatrixWorld();
+  });
 
   return (
     <>

@@ -1,5 +1,7 @@
+"use client";
+
 import BlockProps from "@/types/BlockProps";
-import { Box, useGLTF } from "@react-three/drei";
+import { Box, useGLTF, Float, Text } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 
@@ -17,7 +19,19 @@ export default function BlockEnd({ position = [0, 0, 0] } : BlockProps) {
       <group
         position={position}
       >
-
+        <Float
+          floatIntensity={0.25}
+          rotationIntensity={0.25}
+        >
+          <Text
+            scale={0.5}
+            position={[0, 2, 0]}
+            rotation-x={-0.25}
+          >
+            Finish
+            <meshStandardMaterial color="black" />
+          </Text>
+        </Float>
         <RigidBody
           type="fixed"
           colliders="hull"
@@ -28,7 +42,7 @@ export default function BlockEnd({ position = [0, 0, 0] } : BlockProps) {
           <primitive
             object={hamburgerModel.scene}
             scale={0.2}
-            position={[0, 0.75, 0]}
+            position={[0, 0.05, 0]}
           />
         </RigidBody>
 

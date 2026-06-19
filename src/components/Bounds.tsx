@@ -1,3 +1,5 @@
+"use client";
+
 import BoundProps from "@/types/BoundProps";
 import { Box } from "@react-three/drei";
 import { CuboidCollider, RigidBody } from "@react-three/rapier";
